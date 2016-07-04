@@ -1,5 +1,5 @@
 """
-    This is an example of decorator class
+    This is an example of decorator class, but it only decorate functions.
 """
 
 
@@ -15,26 +15,16 @@ class myDecorator(object):
         self.f(*args, **kwargs)
 
 
-class Foo(object):
-    def __init(self, name):
-        print 'Foo __init__'
-        self.name = name
-
-    @myDecorator
-    def say(self, content):
-        print 'say %s' % content
-
-    def __call__(self, *args, **kwargs):
-        print 'Foo __call__'
-
-
 @myDecorator
 def hello(content):
     print 'hello %s' % content
 
 
+def hello2(content):
+    print 'hello2 %s' % content
+
+
 hello('decorator')
 
-foo = Foo('foo')
-foo.say('decorator')
-
+# equal with @myDecorator
+myDecorator(hello2)('decorator')

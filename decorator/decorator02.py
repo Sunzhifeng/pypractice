@@ -1,12 +1,13 @@
 """
-    This module is used to show some useful decorator example
+    An example for class decorator to decorate all instance methods.
 """
 
 import time
 
 
 def timing(func):
-
+    """ a timing decorator is used to count function running time.
+    """
     def wrapper(*args, **kwargs):
         start = time.time()
         func(*args, **kwargs)
@@ -16,16 +17,9 @@ def timing(func):
     return wrapper
 
 
-def sleep(func):
-
-    def wrapper(*args, **kwargs):
-        time.sleep(2)
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
 def timing_all_class_method(Cls):
+    """ a class decorator of timing method's time cost.
+    """
     class NewCls(object):
         def __init__(self, *args, **kwargs):
             self.obj = Cls(*args, **kwargs)
@@ -40,7 +34,7 @@ def timing_all_class_method(Cls):
 
             x = self.obj.__getattribute__(s)
             if type(x) == type(self.__init__):    # x is instance method
-                return timing(x)
+                return timing(x)    # compute run time of method x
             else:
                 return x
 
@@ -58,8 +52,11 @@ class Foo(object):
         print 'Foo:hello %s' % content
 
 
-if __name__ == '__main__':
-
+def main():
     hello('world')
     foo = Foo()
     foo.hello('world')
+
+
+if __name__ == '__main__':
+    main()

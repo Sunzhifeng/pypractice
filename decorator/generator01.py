@@ -15,7 +15,7 @@ def coroutine(func):
 def receiver():
     print 'Ready to receive.'
     while True:
-        n = (yield)
+        n = yield
         print 'Got %s' % n
 
 r = receiver()

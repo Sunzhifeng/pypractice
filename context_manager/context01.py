@@ -3,6 +3,8 @@
 """
     An example for context manager
 """
+
+
 class ContextManager(object):
     def __init__(self):
         print 'init'
